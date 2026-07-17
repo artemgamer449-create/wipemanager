@@ -1,0 +1,1102 @@
+/* ============================================
+   ALPHARUST WIPE COMMANDER
+   Glassmorphism + Neon Animations
+   ============================================ */
+
+/* ===== БАЗА ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', 'Segoe UI', sans-serif;
+    background: #0a0a0f;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+    color: #fff;
+    position: relative;
+}
+
+/* ===== АНИМИРОВАННЫЙ ФОН ===== */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: orbFloat 20s infinite ease-in-out;
+}
+
+.orb1 {
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 60, 60, 0.08);
+    top: -150px;
+    left: -150px;
+    animation-delay: 0s;
+}
+
+.orb2 {
+    width: 600px;
+    height: 600px;
+    background: rgba(60, 130, 255, 0.08);
+    bottom: -200px;
+    right: -200px;
+    animation-delay: -5s;
+}
+
+.orb3 {
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 200, 60, 0.05);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -10s;
+}
+
+.orb4 {
+    width: 300px;
+    height: 300px;
+    background: rgba(200, 60, 255, 0.05);
+    top: 20%;
+    right: 10%;
+    animation-delay: -15s;
+}
+
+@keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(80px, -60px) scale(1.1); }
+    66% { transform: translate(-60px, 80px) scale(0.9); }
+}
+
+/* ===== КОНТЕЙНЕР ===== */
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================
+   СТЕКЛЯННЫЙ ЭФФЕКТ
+   ============================================ */
+.glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.glass:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 8px 40px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================
+   ХЕДЕР
+   ============================================ */
+.glass-header {
+    composes: glass;
+    padding: 35px 40px;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: slideDown 0.8s ease-out;
+}
+
+.glass-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.02), transparent 70%);
+    pointer-events: none;
+    animation: headerGlow 10s infinite alternate;
+}
+
+@keyframes headerGlow {
+    0% { transform: translate(-10%, -10%) scale(1); opacity: 0.5; }
+    100% { transform: translate(10%, 10%) scale(1.2); opacity: 1; }
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.logo-icon {
+    font-size: 3.8rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 0 40px rgba(255, 200, 60, 0.3);
+    animation: logoPulse 3s infinite ease-in-out;
+    position: relative;
+}
+
+.logo-icon::after {
+    content: 'α';
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: rgba(255, 200, 60, 0.1);
+    filter: blur(20px);
+    animation: logoGlow 2s infinite alternate;
+}
+
+@keyframes logoPulse {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.05) rotate(-2deg); }
+}
+
+@keyframes logoGlow {
+    0% { filter: blur(20px) brightness(1); }
+    100% { filter: blur(40px) brightness(1.5); }
+}
+
+.glass-header h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ff6a00, #ffb347, #ff6a00);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 4s ease infinite;
+    letter-spacing: 6px;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes gradientMove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 8px;
+    margin-top: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.version {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.15);
+    margin-top: 8px;
+    letter-spacing: 3px;
+    position: relative;
+    z-index: 1;
+}
+
+.backend-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================
+   СТАТУС-БАР
+   ============================================ */
+.status-bar {
+    composes: glass;
+    padding: 15px 25px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    animation: slideDown 0.8s ease-out 0.1s both;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+}
+
+.status-item strong {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 700;
+}
+
+/* ===== СТАТУС-ДОТ ===== */
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.status-dot.live {
+    background: #00ff88;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    animation: dotPulse 2s infinite;
+}
+
+.status-dot.offline {
+    background: #ff6a00;
+    box-shadow: 0 0 20px rgba(255, 106, 0, 0.3);
+    animation: dotPulse 1s infinite;
+}
+
+@keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ============================================
+   СЕРВЕРЫ
+   ============================================ */
+.servers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 40px;
+    animation: slideUp 0.8s ease-out 0.2s both;
+}
+
+.server-card {
+    composes: glass;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: default;
+}
+
+.server-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.server-card:hover .card-glow {
+    opacity: 1;
+}
+
+/* ===== ХЕДЕР СЕРВЕРА ===== */
+.server-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.server-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #fff;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+}
+
+.server-icon::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 22px;
+    background: inherit;
+    opacity: 0.3;
+    filter: blur(15px);
+    z-index: -1;
+    transition: all 0.4s;
+}
+
+.server-card:hover .server-icon {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.server-card:hover .server-icon::after {
+    opacity: 0.6;
+    filter: blur(25px);
+}
+
+.server-info h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+}
+
+.server-status {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.server-status.online {
+    color: #00ff88;
+}
+
+.server-status.warning {
+    color: #ff6a00;
+    animation: statusWarn 1s infinite;
+}
+
+@keyframes statusWarn {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* ===== ТАБЫ ТИПА ВАЙПА ===== */
+.wipe-type-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+}
+
+.wipe-tab {
+    flex: 1;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.35);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.55rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.wipe-tab:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.wipe-tab.active {
+    background: rgba(255, 106, 0, 0.1);
+    border-color: rgba(255, 106, 0, 0.25);
+    color: #fff;
+    box-shadow: 0 0 30px rgba(255, 106, 0, 0.05);
+}
+
+/* ===== ИНФО ВАЙПА ===== */
+.wipe-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.wipe-info .label {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+}
+
+.wipe-date {
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+/* ===== ТАЙМЕР ===== */
+.countdown {
+    text-align: center;
+    padding: 18px 20px;
+    margin: 12px 0 18px 0;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: all 0.3s;
+}
+
+.countdown-number {
+    font-size: 2.4rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ff6a00, #ffb347);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+    font-variant-numeric: tabular-nums;
+}
+
+.countdown.warning .countdown-number {
+    background: linear-gradient(135deg, #ff3d3d, #ff6a00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: warningPulse 0.5s infinite alternate;
+}
+
+@keyframes warningPulse {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0.4; transform: scale(0.95); }
+}
+
+/* ===== КНОПКИ ===== */
+.wipe-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.wipe-actions .btn {
+    flex: 1;
+}
+
+/* ===== ГЛАВНЫЕ КНОПКИ ===== */
+.btn {
+    position: relative;
+    overflow: hidden;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 14px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.glass-btn {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-btn .btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+.glass-btn .btn-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    transform: translate(-50%, -50%);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1;
+}
+
+.glass-btn:hover .btn-glow {
+    width: 300px;
+    height: 300px;
+}
+
+.glass-btn:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.glass-btn:active {
+    transform: translateY(0px) scale(0.98);
+}
+
+/* ===== ПРИМАРНЫЕ КНОПКИ ===== */
+.glass-btn.primary {
+    background: linear-gradient(135deg, rgba(255, 106, 0, 0.15), rgba(255, 180, 60, 0.05));
+    border-color: rgba(255, 106, 0, 0.2);
+}
+
+.glass-btn.primary:hover {
+    background: linear-gradient(135deg, rgba(255, 106, 0, 0.25), rgba(255, 180, 60, 0.1));
+    border-color: #ff6a00;
+    box-shadow: 0 0 60px rgba(255, 106, 0, 0.15);
+}
+
+/* ===== DANGER КНОПКИ ===== */
+.glass-btn.danger,
+.danger-btn {
+    background: linear-gradient(135deg, rgba(255, 60, 60, 0.12), rgba(200, 30, 30, 0.05));
+    border-color: rgba(255, 60, 60, 0.15);
+}
+
+.glass-btn.danger:hover,
+.danger-btn:hover {
+    background: linear-gradient(135deg, rgba(255, 60, 60, 0.25), rgba(200, 30, 30, 0.1));
+    border-color: #ff3d3d;
+    box-shadow: 0 0 60px rgba(255, 60, 60, 0.15);
+}
+
+/* ===== МАЛЕНЬКИЕ КНОПКИ ===== */
+.glass-btn.small {
+    padding: 8px 16px;
+    font-size: 0.5rem;
+    width: auto;
+    letter-spacing: 1px;
+}
+
+/* ============================================
+   ФОРМА
+   ============================================ */
+.wipe-form {
+    composes: glass;
+    padding: 35px 40px;
+    margin-bottom: 40px;
+    animation: slideUp 0.8s ease-out 0.3s both;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.form-header h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    background: linear-gradient(135deg, #fff, rgba(255, 255, 255, 0.6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.form-badge {
+    font-size: 0.55rem;
+    padding: 6px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== GRID ФОРМЫ ===== */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+/* ===== ИНПУТЫ ===== */
+.glass-input {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.glass-input:focus {
+    outline: none;
+    border-color: rgba(255, 106, 0, 0.25);
+    box-shadow: 0 0 30px rgba(255, 106, 0, 0.05);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.glass-input::placeholder {
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 0.7rem;
+}
+
+.glass-input option {
+    background: #1a1a2e;
+    color: #fff;
+}
+
+textarea.glass-input {
+    resize: vertical;
+    min-height: 70px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+select.glass-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.2)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    cursor: pointer;
+}
+
+/* ===== КНОПКИ ФОРМЫ ===== */
+.form-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    margin-top: 28px;
+}
+
+.form-actions .btn {
+    padding: 16px 20px;
+    font-size: 0.65rem;
+}
+
+/* ============================================
+   ЛОГ
+   ============================================ */
+.log-section {
+    composes: glass;
+    padding: 35px 40px;
+    margin-bottom: 30px;
+    animation: slideUp 0.8s ease-out 0.4s both;
+}
+
+.log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.log-header h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ===== КОНТЕЙНЕР ЛОГА ===== */
+#logContainer {
+    max-height: 380px;
+    overflow-y: auto;
+    padding: 4px;
+    scroll-behavior: smooth;
+}
+
+#logContainer::-webkit-scrollbar {
+    width: 4px;
+}
+
+#logContainer::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 10px;
+}
+
+#logContainer::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+#logContainer::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== ЗАПИСИ ЛОГА ===== */
+.log-entry {
+    padding: 14px 18px;
+    margin-bottom: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border-left: 3px solid rgba(255, 106, 0, 0.2);
+    animation: logSlide 0.35s ease-out;
+    transition: all 0.3s;
+}
+
+.log-entry:hover {
+    background: rgba(0, 0, 0, 0.3);
+    border-left-color: rgba(255, 106, 0, 0.4);
+}
+
+@keyframes logSlide {
+    from { opacity: 0; transform: translateX(-20px) scale(0.98); }
+    to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.log-entry .log-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* ===== ТЕГИ СЕРВЕРОВ ===== */
+.log-entry .server-tag {
+    display: inline-block;
+    padding: 3px 14px;
+    border-radius: 8px;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.server-tag.s240 {
+    background: rgba(255, 60, 60, 0.15);
+    color: #ff3d3d;
+    border: 1px solid rgba(255, 60, 60, 0.12);
+}
+
+.server-tag.s236 {
+    background: rgba(60, 130, 255, 0.15);
+    color: #3d7dff;
+    border: 1px solid rgba(60, 130, 255, 0.12);
+}
+
+.server-tag.ssystem {
+    background: rgba(255, 200, 60, 0.1);
+    color: #ffc83d;
+    border: 1px solid rgba(255, 200, 60, 0.1);
+}
+
+.log-entry .timestamp {
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 0.55rem;
+    letter-spacing: 0.5px;
+}
+
+.log-entry .log-action {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.log-empty {
+    color: rgba(255, 255, 255, 0.1);
+    text-align: center;
+    padding: 50px 20px;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+}
+
+/* ============================================
+   ФУТЕР
+   ============================================ */
+.glass-footer {
+    composes: glass;
+    padding: 18px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.15);
+    letter-spacing: 1.5px;
+    flex-wrap: wrap;
+    animation: slideUp 0.8s ease-out 0.5s both;
+}
+
+.footer-dot {
+    color: #00ff88;
+    animation: dotPulse 2s infinite;
+    font-size: 0.4rem;
+}
+
+/* ============================================
+   АНИМАЦИИ
+   ============================================ */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-50px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ============================================
+   АДАПТИВ (Mobile First)
+   ============================================ */
+@media (max-width: 1024px) {
+    .servers-grid {
+        gap: 20px;
+    }
+    
+    .glass-header h1 {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 868px) {
+    .servers-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        grid-template-columns: 1fr;
+    }
+    
+    .status-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .glass-header h1 {
+        font-size: 2.2rem;
+        letter-spacing: 4px;
+    }
+    
+    .logo-icon {
+        font-size: 2.8rem;
+    }
+    
+    .wipe-form {
+        padding: 25px;
+    }
+    
+    .log-section {
+        padding: 25px;
+    }
+    
+    .glass-header {
+        padding: 25px;
+    }
+    
+    .server-card {
+        padding: 22px;
+    }
+    
+    .countdown-number {
+        font-size: 1.8rem;
+    }
+    
+    .wipe-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .glass-header {
+        padding: 20px;
+    }
+    
+    .glass-header h1 {
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+    }
+    
+    .logo-icon {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 0.7rem;
+        letter-spacing: 4px;
+    }
+    
+    .server-card {
+        padding: 18px;
+    }
+    
+    .server-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+    }
+    
+    .server-info h2 {
+        font-size: 0.9rem;
+    }
+    
+    .countdown-number {
+        font-size: 1.4rem;
+    }
+    
+    .wipe-form {
+        padding: 18px;
+    }
+    
+    .log-section {
+        padding: 18px;
+    }
+    
+    .form-header h2 {
+        font-size: 1rem;
+    }
+    
+    .wipe-tab {
+        font-size: 0.45rem;
+        padding: 6px 8px;
+    }
+    
+    .btn {
+        font-size: 0.5rem;
+        padding: 10px 14px;
+    }
+    
+    .glass-input {
+        font-size: 0.65rem;
+        padding: 12px 14px;
+    }
+    
+    .status-item {
+        font-size: 0.6rem;
+    }
+    
+    .glass-footer {
+        font-size: 0.5rem;
+        gap: 10px;
+        padding: 14px 18px;
+    }
+    
+    .log-entry {
+        padding: 10px 12px;
+    }
+    
+    .log-entry .log-action {
+        font-size: 0.65rem;
+    }
+}
+
+/* ============================================
+   ДОПОЛНИТЕЛЬНЫЕ ЭФФЕКТЫ
+   ============================================ */
+
+/* Свечение при ховере на карточке */
+.server-card::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, transparent, rgba(255, 106, 0, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.6s;
+    pointer-events: none;
+}
+
+.server-card:hover::after {
+    opacity: 1;
+}
+
+/* Эффект песка/шума на фоне */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+}
+
+/* Подсветка активной формы */
+.wipe-form:focus-within {
+    border-color: rgba(255, 106, 0, 0.15);
+    box-shadow: 
+        0 8px 40px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(255, 106, 0, 0.03),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Анимация появления элементов при загрузке */
+.glass-header,
+.status-bar,
+.server-card,
+.wipe-form,
+.log-section,
+.glass-footer {
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.glass-header { animation-delay: 0s; }
+.status-bar { animation-delay: 0.1s; }
+.server-card:first-child { animation-delay: 0.2s; }
+.server-card:last-child { animation-delay: 0.3s; }
+.wipe-form { animation-delay: 0.4s; }
+.log-section { animation-delay: 0.5s; }
+.glass-footer { animation-delay: 0.6s; }
